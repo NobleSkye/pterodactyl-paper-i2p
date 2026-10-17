@@ -1,0 +1,7 @@
+FROM ghcr.io/pterodactyl/yolks:java_21
+
+USER root
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends i2pd curl ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
+USER container

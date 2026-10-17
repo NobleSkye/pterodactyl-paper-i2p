@@ -4,6 +4,12 @@ Docker image for a Pterodactyl egg that runs a [Paper](https://papermc.io/) Mine
 
 The image is the official Pterodactyl Java 21 yolk (`ghcr.io/pterodactyl/yolks:java_21`) with `i2pd`, `curl` and `ca-certificates` added. The egg's start script launches i2pd in the background and then starts Paper.
 
+
+> [!IMPORTANT]  
+> The configs were heavily assisted with AI (Claude Opus 5.5)
+> This is an AI-generated proof of concept (i got the idea asked Claude for help with it)
+
+
 ## Image
 
 ```

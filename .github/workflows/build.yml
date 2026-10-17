@@ -15,6 +15,10 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        java: [21, 25]
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -24,7 +28,7 @@ jobs:
         run: |
           # GHCR requires lowercase image names.
           owner="${GITHUB_REPOSITORY_OWNER,,}"
-          echo "image=ghcr.io/${owner}/yolks-java21-i2pd" >> "$GITHUB_OUTPUT"
+          echo "image=ghcr.io/${owner}/yolks-java${{ matrix.java }}-i2pd" >> "$GITHUB_OUTPUT"
           echo "short_sha=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
 
       - name: Set up Docker Buildx
@@ -43,6 +47,9 @@ jobs:
           context: .
           push: true
           pull: true
+          # The Dockerfile is written against java_21; swap the FROM image for other Java versions.
+          build-contexts: |
+            ghcr.io/pterodactyl/yolks:java_21=docker-image://ghcr.io/pterodactyl/yolks:java_${{ matrix.java }}
           tags: |
             ${{ steps.meta.outputs.image }}:latest
             ${{ steps.meta.outputs.image }}:${{ steps.meta.outputs.short_sha }}

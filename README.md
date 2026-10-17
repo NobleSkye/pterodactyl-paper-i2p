@@ -23,8 +23,8 @@ Put the `:latest` names in the egg's `docker_images` field:
 
 ```json
 "docker_images": {
-    "Java 21 + i2pd": "ghcr.io/nobleskye/yolks-java21-i2pd:latest",
-    "Java 25 + i2pd": "ghcr.io/nobleskye/yolks-java25-i2pd:latest"
+    "Java 21 - i2pd": "ghcr.io/nobleskye/yolks-java21-i2pd:latest",
+    "Java 25 - i2pd": "ghcr.io/nobleskye/yolks-java25-i2pd:latest"
 }
 ```
 
